@@ -7,8 +7,8 @@
 ## 📸 Preview
 
 ![Preview1](screenshots/fin_1.png)
-![Preview2](screenshots/fin_1.png)
-![Preview3](screenshots/fin_1.png)
+![Preview2](screenshots/fin_2.png)
+![Preview3](screenshots/fin_3.png)
 
 ---
 
