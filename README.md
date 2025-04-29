@@ -45,7 +45,8 @@ cd ../backend
 npm install
 ```
 
-3.** Database Setup **
+3. **Database Setup**
+
 Since ``synchronize: true`` is enabled in the TypeORM configuration, the tables will be automatically created based on the entities defined in the code. You don't need to manually create the database structure — TypeORM will handle it for you.
 However, if you prefer to manually create the database or need to reset the schema, below is the structure of the required tables.
 
