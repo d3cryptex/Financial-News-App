@@ -1,32 +1,29 @@
-# 📦 Project Name
+# 📰 Financial News
 
-> A short and clear description of your project in one sentence.
+> A full-stack application that delivers real-time financial news updates, designed for educational purposes.
 
 ---
 
 ## 📸 Preview
 
-![Preview](link-to-screenshot-or-gif)
+![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3FzZGNzNGZtZ2Y4b3ZkcnQ4d2lnOXZhdXgwZGdtbTh5N2w4OXZ3cSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LmNwrBhejkK9EFP502/giphy.gif)
 
 ---
 
 ## 🚀 Features
 
-- ✨ Feature 1 — describe the coolest thing here.
-- ⚡ Feature 2 — something useful.
-- 🧠 Feature 3 — if it has AI or logic, mention it.
-- 🛠️ Built with: Angular / NestJS / MySQL / etc.
+- 🗞️ Real-time fetching of financial news from multiple APIs.
+- 🔍 Search and filter system for relevant topics and tags.
+- 💾 Backend API built with NestJS and connected to a MySQL database.
+- 🖼️ Responsive Angular frontend.
 
 ---
 
 ## 🧰 Technologies Used
 
-| Frontend     | Backend    | Database   | Tools / Other       |
-|--------------|------------|------------|----------------------|
-| HTML, CSS, TS | NestJS     | MySQL      | VSCode, Git, Postman |
-| Angular       | Express    | MongoDB    | Docker, GitHub       |
-
-> You can edit this table based on your tech stack.
+| Frontend       | Backend    | Database | Tools / Other                     |
+|----------------|------------|----------|----------------------------------|
+| Angular, RxJS  | NestJS     | MySQL    | VSCode, Git, Postman, Docker     |
 
 ---
 
@@ -34,7 +31,7 @@
 
 1. **Clone the project**
 ```bash
-git clone https://github.com/your-username/project-name.git
+git clone https://github.com/your-username/financial-news.git
 ```
 
 2. **Install dependencies**
@@ -46,13 +43,12 @@ cd ../backend
 npm install
 ```
 
-3. **Set up environment variables**  
-Create a `.env` file inside `/backend`:
+3. **Set up environment variables**
 ```env
 DB_HOST=localhost
 DB_USER=root
-DB_PASS=password
-...
+DB_PASS=yourpassword
+DB_NAME=financial_news
 ```
 
 4. **Run the project**
@@ -70,33 +66,17 @@ npm run start:dev
 
 ## 📦 Deployment
 
-You can deploy the frontend with Vercel / Netlify, and backend on Render / Railway / VPS.
-> Make sure your database is hosted or accessible remotely!
-
----
-
-## 🧪 Testing
-
-You can add instructions here on how to run tests if you have them:
-```bash
-npm run test
-```
+Frontend can be deployed using Vercel or Netlify.  
+Backend can be deployed on Render, Railway, or VPS.  
+Ensure the database is available remotely.
 
 ---
 
 ## 📬 Contact
 
-Feel free to reach out via:
-
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=flat-square&logo=discord&logoColor=white)](https://discord.com/users/your-id)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=flat-square&logo=telegram&logoColor=white)](https://t.me/your-handle)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:your@email.com)
-
----
-
-## 🧠 Learning Focus
-
-This project was made as part of my journey into mastering [insert goal here: e.g. full-stack development, system architecture, etc.].
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:your@email)
 
 ---
 
