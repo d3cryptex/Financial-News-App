@@ -6,7 +6,9 @@
 
 ## 📸 Preview
 
-![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3FzZGNzNGZtZ2Y4b3ZkcnQ4d2lnOXZhdXgwZGdtbTh5N2w4OXZ3cSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LmNwrBhejkK9EFP502/giphy.gif)
+![Preview1](screenshots/fin_1.png)
+![Preview2](screenshots/fin_1.png)
+![Preview3](screenshots/fin_1.png)
 
 ---
 
