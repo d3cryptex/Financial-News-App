@@ -13,7 +13,7 @@
 ## 🚀 Features
 
 - 🗞️ Real-time fetching of financial news from multiple APIs.
-- 🔍 Search and filter system for relevant topics and tags.
+- 🔒 Authorization and login system, Google Auth 3.0 also.
 - 💾 Backend API built with NestJS and connected to a MySQL database.
 - 🖼️ Responsive Angular frontend.
 
@@ -45,10 +45,15 @@ npm install
 
 3. **Set up environment variables**
 ```env
+POLYGON_API_KEY=you need to put your polygon api key
+NEWS_API_KEY=you need to put your news api key
+ALPHAVANTAGE_API_KEY=you need to put your alphavantage api key
+BACKEND_URL=localhost
 DB_HOST=localhost
-DB_USER=root
-DB_PASS=yourpassword
-DB_NAME=financial_news
+DB_PORT=here your port
+DB_USERNAME=here your username (example: root)
+DB_PASSWORD=here your password
+DB_NAME=here name your db
 ```
 
 4. **Run the project**
