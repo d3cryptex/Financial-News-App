@@ -1,0 +1,133 @@
+<div class="main-content-area">
+    <div *ngIf="isLoading" class="loading-container">
+      <span class="loader"></span>
+    </div>
+
+    <div *ngIf="!isLoading && loadingError" class="status-message error">Error: {{ loadingError }}</div>
+  
+    <div class="stock-lists-container" *ngIf="!isLoading && !loadingError">
+      <div class="stock-list-card">
+        <h2>Top Gainers</h2>
+        <ul class="stock-items">
+          <li class="stock-item" *ngFor="let stock of stockTopGainers">
+            <div class="stock-info">
+              <span class="stock-ticker">{{ stock.ticker }}</span>
+              <span class="stock-name">{{ stock.details?.name ?? '...' }}</span>
+            </div>
+            <div class="stock-chart-container">
+              <ng-container *ngIf="stock.chartOptions as options">
+                <ng-container *ngIf="options.chart && options.series && options.stroke && options.colors && options.fill && options.tooltip && options.xaxis && options.yaxis && options.grid && options.markers; else noChart">
+                    <apx-chart
+                        [chart]="options.chart"
+                        [series]="options.series"
+                        [stroke]="options.stroke"   
+                        [colors]="options.colors"   
+                        [fill]="options.fill"   
+                        [tooltip]="options.tooltip" 
+                        [xaxis]="options.xaxis"     
+                        [yaxis]="options.yaxis"     
+                        [grid]="options.grid"
+                        [markers]="options.markers">      
+                        </apx-chart>
+                </ng-container>
+            </ng-container>
+              <ng-template #noChart>
+                <span class="no-chart-data"></span> 
+              </ng-template>
+            </div>
+            <div class="stock-values">
+              <span class="stock-price">{{ stock.prevClose?.c | currency:'USD':'symbol':'1.2-2' }}</span>
+              <span class="stock-change positive"> <ng-container *ngIf="stock.ocChangePercent !== null">
+                  {{ getOCAbsoluteChange(stock.prevClose) | number:'1.2-2' }}
+                  ({{ stock.ocChangePercent | percent:'1.2-2' }})
+                </ng-container>
+                <ng-container *ngIf="stock.ocChangePercent === null">--</ng-container>
+              </span>
+            </div>
+          </li>
+          <li *ngIf="!isLoading && stockTopGainers.length === 0">No data available.</li>
+        </ul>
+      </div>
+    
+      <div class="stock-list-card">
+        <h2>Top Losers</h2>
+         <ul class="stock-items">
+           <li class="stock-item" *ngFor="let stock of stockTopLosers">
+            <div class="stock-info">
+              <span class="stock-ticker">{{ stock.ticker }}</span>
+              <span class="stock-name">{{ stock.details?.name ?? '...' }}</span>
+            </div>
+            <div class="stock-chart-container">
+              <ng-container *ngIf="stock.chartOptions as options">
+                <ng-container *ngIf="options.chart && options.series && options.stroke && options.colors && options.fill && options.tooltip && options.xaxis && options.yaxis && options.grid && options.markers; else noChart">
+                    <apx-chart
+                        [chart]="options.chart"
+                        [series]="options.series"
+                        [stroke]="options.stroke"   
+                        [colors]="options.colors"   
+                        [fill]="options.fill"   
+                        [tooltip]="options.tooltip" 
+                        [xaxis]="options.xaxis"     
+                        [yaxis]="options.yaxis"     
+                        [grid]="options.grid"
+                        [markers]="options.markers">      
+                        </apx-chart>
+                </ng-container>
+              </ng-container>
+              <ng-template #noChart>
+                <span class="no-chart-data"></span> 
+              </ng-template>
+             </div>
+             <div class="stock-values">
+              <span class="stock-price">{{ stock.prevClose?.c | currency:'USD':'symbol':'1.2-2' }}</span>
+              <span class="stock-change negative"> <ng-container *ngIf="stock.ocChangePercent !== null">
+                  {{ getOCAbsoluteChange(stock.prevClose) | number:'1.2-2' }}
+                  ({{ stock.ocChangePercent | percent:'1.2-2' }})
+                </ng-container>
+                <ng-container *ngIf="stock.ocChangePercent === null">--</ng-container>
+              </span>
+            </div>
+          </li>
+           <li *ngIf="!isLoading && stockTopLosers.length === 0">No data available.</li>
+        </ul>
+      </div>
+    
+      <div class="stock-list-card">
+        <h2>Most Active</h2>
+        <ul class="stock-items">
+           <li class="stock-item" *ngFor="let stock of stockMostActive">
+            <div class="stock-info">
+              <span class="stock-ticker">{{ stock.ticker }}</span>
+              <span class="stock-name">{{ stock.details?.name ?? '...' }}</span>
+            </div>
+            <div class="stock-chart-container">
+              <ng-container *ngIf="stock.chartOptions as options">
+                <ng-container *ngIf="options.chart && options.series && options.stroke && options.colors && options.fill && options.tooltip && options.xaxis && options.yaxis && options.grid && options.markers; else noChart">
+                    <apx-chart
+                        [chart]="options.chart"
+                        [series]="options.series"
+                        [stroke]="options.stroke"   
+                        [colors]="options.colors"   
+                        [fill]="options.fill"   
+                        [tooltip]="options.tooltip" 
+                        [xaxis]="options.xaxis"     
+                        [yaxis]="options.yaxis"     
+                        [grid]="options.grid"
+                        [markers]="options.markers">      
+                        </apx-chart>
+                </ng-container>
+              </ng-container>
+              <ng-template #noChart>
+                <span class="no-chart-data"></span> 
+              </ng-template>
+            </div>
+            <div class="stock-values">
+              <span class="stock-price">{{ stock.prevClose?.c | currency:'USD':'symbol':'1.2-2' }}</span>
+               <span class="stock-change" title="Volume"> {{ stock.prevClose?.v | number:'1.0-0' }} </span>
+            </div>
+          </li>
+           <li *ngIf="!isLoading && stockMostActive.length === 0">No data available.</li>
+        </ul>
+      </div>
+    </div>
+</div>

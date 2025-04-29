@@ -1,0 +1,150 @@
+.news-list-container {
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
+  .news-list-container h1 {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+  }
+  
+  .loading-indicator, .error-message {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2em;
+    color: #888;
+  }
+  .error-message { color: red;}
+  
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .news-card {
+    background-color: var(--card-bg, #1e1e1e);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Используем Flex для самой карточки */
+    /* Убираем flex-direction: column */
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 150px; /* Примерная минимальная высота */
+    margin-bottom: 10px;
+  }
+  
+  .news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-link {
+    display: flex;
+    flex-direction: row; /* Элементы (картинка, текст) теперь в строку */
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    gap: 15px; /* Отступ между картинкой и текстом */
+    padding: 15px; /* Внутренние отступы карточки */
+    box-sizing: border-box;
+  }
+  
+  .small-article-image-container {
+    display: block; /* Чтобы занимал место */
+    /* --- ЗАДАЕМ ФИКСИРОВАННЫЙ РАЗМЕР ЗДЕСЬ --- */
+    width: 200px;
+    height: 130px;
+    /* ------------------------------------ */
+    border-radius: 6px;
+    overflow: hidden; /* Обрезаем все, что вылезет (на всякий случай) */
+    position: relative; /* Для возможного псевдоэлемента анимации */
+    background-color: #222; /* Цвет фона по умолчанию (если градиент не сработает) */
+    flex-shrink: 0; /* Важно для flex/grid макетов, чтобы контейнер не сжимался */
+    margin-bottom: 10px; /* Отступ снизу, если нужно */
+  }
+  
+  /* Сам тег IMG */
+  .small-article-image {
+    display: block;
+    width: 100%;    /* Заполняет ширину контейнера (200px) */
+    height: 100%;   /* Заполняет высоту контейнера (130px) */
+    object-fit: cover; /* Масштабирует с обрезкой */
+    border-radius: 6px; /* Можно убрать, если скругление только на контейнере */
+  
+    /* Стили, чтобы попытаться скрыть alt текст и иконку битой картинки */
+    color: transparent;       /* Цвет текста (alt) прозрачный */
+    font-size: 0;           /* Размер шрифта 0 */
+    line-height: 0;         /* Высота строки 0 */
+    /* Фоновый цвет картинки делаем таким же, как у контейнера, чтобы скрыть иконку битого изображения */
+    background-color: var(--card-bg, #222);
+  }
+  
+  .news-content {
+    /* Убираем padding, т.к. он теперь на .card-link */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Заголовок/описание сверху, футер снизу */
+    flex-grow: 1; /* Занимает все оставшееся место */
+    overflow: hidden; /* Скрываем лишний текст */
+    order: 1; /* <-- ВИЗУАЛЬНО ставим текст ПЕРВЫМ (слева) */
+  }
+  
+  .news-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Максимум строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-color, #e0e0e0); /* Убедимся, что цвет задан */
+  }
+  
+  .news-description {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-muted, #aaa);
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+    flex-grow: 1; /* Занимает место между заголовком и футером */
+     display: -webkit-box;
+    -webkit-line-clamp: 2; /* Максимум строк */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted, #888);
+    margin-top: auto; /* Прижимает футер к низу */
+    padding-top: 8px;
+    /* Убрал рамку сверху, т.к. контент теперь не растягивается на всю высоту */
+    border-top: 1px solid #2a2a2a; 
+  }
+  
+  .news-source {
+    font-weight: 500;
+  }
+  
+  .news-date {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) { 
+    .news-list-container h1 {
+      font-size: 20px;
+    }
+  }

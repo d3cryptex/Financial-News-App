@@ -1,0 +1,111 @@
+<div class="signup-page-container"> 
+  <div class="back-link-container">
+    <a (click)="navigate_Main()" class="back-link">← Back to Home</a>
+  </div>
+
+  <div class="form-wrapper">
+    <div class="logo-placeholder">
+       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+    </div>
+
+    <h1>Create Account</h1>
+    <p class="subtitle">Join us! Fill in the details below.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          placeholder="Choose a username"
+          formControlName="name"
+          (blur)="checkUsername()"
+          [class.is-invalid]="(formControls['name'].touched && formControls['name'].invalid) || usernameTaken"
+          [attr.aria-invalid]="(formControls['name'].touched && formControls['name'].invalid) || usernameTaken"
+          autocomplete="username">
+
+        <div *ngIf="usernameTaken && !formControls['name'].invalid" class="invalid-feedback animate-slide-down">
+          Этот никнейм уже занят
+        </div>
+        <div *ngIf="formControls['name'].touched && formControls['name'].invalid" class="invalid-feedback animate-slide-down">
+          <div *ngIf="formControls['name'].errors?.['required']">Имя обязательно для заполнения</div>
+          <div *ngIf="formControls['name'].errors?.['minlength']">Имя должно быть не менее 3 символов</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-email">Email</label>
+        <input
+          id="reg-email"
+          type="text"
+          placeholder="you@example.com"
+          formControlName="email"
+          (blur)="checkEmail()"
+          [class.is-invalid]="(formControls['email'].touched && formControls['email'].invalid) || emailTaken"
+          [attr.aria-invalid]="(formControls['email'].touched && formControls['email'].invalid) || emailTaken"
+          autocomplete="email">
+
+        <div *ngIf="emailTaken && !formControls['email'].invalid" class="invalid-feedback animate-slide-down">
+          Этот email уже зарегистрирован
+        </div>
+         <div *ngIf="formControls['email'].touched && formControls['email'].invalid" class="invalid-feedback animate-slide-down">
+          <div *ngIf="formControls['email'].errors?.['required']">Email обязателен</div>
+          <div *ngIf="formControls['email'].errors?.['email']">Введите корректный email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-password">Password</label>
+        <input
+          id="reg-password"
+          type="password"
+          placeholder="Create a password (min. 6 characters)"
+          formControlName="password"
+          [class.is-invalid]="formControls['password'].touched && formControls['password'].invalid"
+          [attr.aria-invalid]="formControls['password'].touched && formControls['password'].invalid"
+          autocomplete="new-password">
+
+        <div *ngIf="formControls['password'].touched && formControls['password'].invalid" class="invalid-feedback animate-slide-down">
+          <div *ngIf="formControls['password'].errors?.['required']">Пароль обязателен</div>
+          <div *ngIf="formControls['password'].errors?.['minlength']">Пароль должен быть не менее 6 символов</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="Confirm your password"
+          formControlName="confirmPassword"
+          [class.is-invalid]="formControls['confirmPassword'].touched && (formControls['confirmPassword'].invalid || registerForm.errors?.['passwordMismatch'])"
+          [attr.aria-invalid]="formControls['confirmPassword'].touched && (formControls['confirmPassword'].invalid || registerForm.errors?.['passwordMismatch'])"
+          autocomplete="new-password">
+
+        <div *ngIf="formControls['confirmPassword'].touched && formControls['confirmPassword'].invalid" class="invalid-feedback animate-slide-down">
+          <div *ngIf="formControls['confirmPassword'].errors?.['required']">Подтверждение пароля обязательно</div>
+        </div>
+         <div *ngIf="formControls['confirmPassword'].touched && !formControls['confirmPassword'].errors?.['required'] && registerForm.errors?.['passwordMismatch']" class="invalid-feedback animate-slide-down">
+           Пароли не совпадают
+         </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || usernameTaken || emailTaken">
+          Sign Up
+      </button>
+
+      <div class="form-footer">
+        <p>Already have an account? <a (click)="navigate_SignIn()" class="form-link">Sign In</a></p>
+        </div>
+
+    </form>
+  </div>
+
+   <div class="legal-links">
+    <a routerLink="/terms" target="_blank" class="legal-link">Terms of Use</a>
+    <span class="separator">&bull;</span>
+    <a routerLink="/privacy" target="_blank" class="legal-link">Privacy Policy</a>
+  </div>
+
+</div>

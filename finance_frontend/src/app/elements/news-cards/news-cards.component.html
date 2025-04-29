@@ -1,0 +1,205 @@
+<div class="cards-wrapper">
+    <ng-container *ngIf="!isLoading && !errorMsg && mainNews; else loadingSkeleton">
+        <article class="article-layout" *ngIf="!isLoading && !errorMsg && mainNews">
+            <div class="top-big-article">
+                <div class="big-article-layout">
+                    <div class="big-article-image-container" [class.placeholder-active]="!mainNews.urlToImage">
+                        <img class="big-article-image"
+                             [src]="mainNews.urlToImage || ''"
+                             [alt]="mainNews.title || 'News image'"
+                             (error)="handleImageError($event)">
+                    </div>
+                    <div class="big-article-description">
+                        <div class="big-article-info">
+                            <h1>{{ mainNews.title }}</h1>
+                            <p>{{ mainNews.description }}</p>
+                        </div>
+                        <div class="big-article-date">
+                            <p>{{ mainNews.publishedAt | date:'mediumDate' }}</p>
+                            <span>•</span>
+                            <p>{{ getSourceName(mainNews.source) }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-articles">
+                <div class="article big" *ngIf="getNewsItem(0) as article1">
+                  <a [href]="article1.url" target="_blank" rel="noopener noreferrer" class="card-link">
+                      <div class="small-article-image-container">
+                        <img class="small-article-image" [src]="article1.urlToImage ? article1.urlToImage : 'assets/img/placeholder.jpg'" [alt]="article1.title || 'News image'" (error)="handleImageError($event)">
+                      </div>
+                      <div class="small-article-description">
+                        <div class="small-article-info">
+                          <h1>{{ article1.title }}</h1>
+                          <p>{{ mainNews.description }}</p>
+                          </div>
+                        <div class="small-article-date">
+                          <p>{{ article1.publishedAt | date:'mediumDate' }}</p>
+                          <span>•</span>
+                          <p>{{ getSourceName(article1.source) }}</p>
+                        </div>
+                      </div>
+                  </a>
+                </div>
+                <div class="article big placeholder-cell" *ngIf="!getNewsItem(0)"></div>
+          
+                <div class="article small1" *ngIf="getNewsItem(1) as article2">
+                   <a [href]="article2.url" target="_blank" rel="noopener noreferrer" class="card-link">
+                      <div class="small-article-image-container">
+                        <img class="small-article-image" [src]="article2.urlToImage ? article2.urlToImage : 'assets/img/placeholder.jpg'" [alt]="article2.title || 'News image'" (error)="handleImageError($event)">
+                      </div>
+                      <div class="small-article-description">
+                        <div class="small-article-info">
+                          <h1>{{ article2.title }}</h1>
+                        </div>
+                        <div class="small-article-date">
+                           <p>{{ article2.publishedAt | date:'mediumDate' }}</p>
+                           <span>•</span>
+                           <p>{{ getSourceName(article2.source) }}</p>
+                        </div>
+                      </div>
+                   </a>
+                </div>
+                 <div class="article small1 placeholder-cell" *ngIf="!getNewsItem(1)"></div>
+          
+          
+                <div class="article small2" *ngIf="getNewsItem(2) as article3">
+                   <a [href]="article3.url" target="_blank" rel="noopener noreferrer" class="card-link">
+                      <div class="small-article-image-container">
+                        <img class="small-article-image" [src]="article3.urlToImage ? article3.urlToImage : 'assets/img/placeholder.jpg'" [alt]="article3.title || 'News image'" (error)="handleImageError($event)">
+                      </div>
+                       <div class="small-article-description">
+                         <div class="small-article-info">
+                           <h1>{{ article3.title }}</h1>
+                         </div>
+                         <div class="small-article-date">
+                           <p>{{ article3.publishedAt | date:'mediumDate' }}</p>
+                           <span>•</span>
+                           <p>{{ getSourceName(article3.source) }}</p>
+                         </div>
+                       </div>
+                   </a>
+                </div>
+                 <div class="article small2 placeholder-cell" *ngIf="!getNewsItem(2)"></div>
+          
+                <div class="article medium1" *ngIf="getNewsItem(3) as article4">
+                    <a [href]="article4.url" target="_blank" rel="noopener noreferrer" class="card-link">
+                        <div class="small-article-image-container">
+                            <img class="small-article-image" [src]="article4.urlToImage ? article4.urlToImage : 'assets/img/placeholder.jpg'" [alt]="article4.title || 'News image'" (error)="handleImageError($event)">
+                        </div>
+                       <div class="small-article-description">
+                         <div class="small-article-info">
+                           <h1>{{ article4.title }}</h1>
+                           <p>{{ mainNews.description }}</p>
+                         </div>
+                         <div class="small-article-date">
+                           <p>{{ article4.publishedAt | date:'mediumDate' }}</p>
+                           <span>•</span>
+                           <p>{{ getSourceName(article4.source) }}</p>
+                         </div>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="article medium1 placeholder-cell" *ngIf="!getNewsItem(3)"></div>
+          
+                <div class="article medium2" *ngIf="getNewsItem(4) as article5">
+                     <a [href]="article5.url" target="_blank" rel="noopener noreferrer" class="card-link">
+                        <div class="small-article-image-container">
+                            <img class="small-article-image" [src]="article5.urlToImage ? article5.urlToImage : 'assets/img/placeholder.jpg'" [alt]="article5.title || 'News image'" (error)="handleImageError($event)">
+                        </div>
+                       <div class="small-article-description">
+                         <div class="small-article-info">
+                           <h1>{{ article5.title }}</h1>
+                           <p>{{ mainNews.description }}</p>
+                         </div>
+                         <div class="small-article-date">
+                           <p>{{ article5.publishedAt | date:'mediumDate' }}</p>
+                           <span>•</span>
+                           <p>{{ getSourceName(article5.source) }}</p>
+                         </div>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="article medium2 placeholder-cell" *ngIf="!getNewsItem(4)"></div>
+          
+              </div> 
+        </article>
+    </ng-container>
+
+    <ng-template #loadingSkeleton>
+        <div *ngIf="errorMsg" class="error-message error">{{ errorMsg }}</div>
+    
+        <div *ngIf="!errorMsg">
+            <article class="article-layout skeleton-loading">
+                <div class="top-big-article skeleton-card">
+                    <div class="skeleton skeleton-image"></div> <div style="margin-top: 15px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <div class="skeleton skeleton-title"></div> <div class="skeleton skeleton-text"></div> <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-text" style="width: 60%;"></div>
+                        <div class="skeleton-footer"> <div class="skeleton skeleton-footer-item"></div>
+                            <div class="skeleton skeleton-footer-item" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-articles skeleton-container">
+                    <div class="article skeleton-card big">
+                         <div class="skeleton skeleton-image"></div>
+                         <div style="margin-top: 10px; flex-grow: 1;">
+                             <div class="skeleton skeleton-title" style="width: 85%;"></div>
+                             <div class="skeleton skeleton-text" style="width: 95%;"></div>
+                         </div>
+                         <div class="skeleton-footer">
+                             <div class="skeleton skeleton-footer-item"></div>
+                             <div class="skeleton skeleton-footer-item"></div>
+                         </div>
+                    </div>
+                     <div class="article skeleton-card small1">
+                         <div class="skeleton skeleton-image"></div>
+                         <div style="margin-top: 10px; flex-grow: 1;">
+                             <div class="skeleton skeleton-title" style="width: 70%;"></div>
+                         </div>
+                         <div class="skeleton-footer">
+                             <div class="skeleton skeleton-footer-item"></div>
+                             <div class="skeleton skeleton-footer-item"></div>
+                         </div>
+                    </div>
+                     <div class="article skeleton-card small2">
+                          <div class="skeleton skeleton-image"></div>
+                         <div style="margin-top: 10px; flex-grow: 1;">
+                             <div class="skeleton skeleton-title" style="width: 80%;"></div>
+                         </div>
+                         <div class="skeleton-footer">
+                             <div class="skeleton skeleton-footer-item"></div>
+                             <div class="skeleton skeleton-footer-item"></div>
+                         </div>
+                     </div>
+                     <div class="article skeleton-card medium1">
+                          <div class="skeleton skeleton-image"></div>
+                         <div style="margin-top: 10px; flex-grow: 1;">
+                             <div class="skeleton skeleton-title" style="width: 90%;"></div>
+                             <div class="skeleton skeleton-text" style="width: 50%;"></div>
+                         </div>
+                         <div class="skeleton-footer">
+                             <div class="skeleton skeleton-footer-item"></div>
+                             <div class="skeleton skeleton-footer-item"></div>
+                         </div>
+                     </div>
+                      <div class="article skeleton-card medium2">
+                          <div class="skeleton skeleton-image"></div>
+                         <div style="margin-top: 10px; flex-grow: 1;">
+                             <div class="skeleton skeleton-title" style="width: 75%;"></div>
+                         </div>
+                         <div class="skeleton-footer">
+                             <div class="skeleton skeleton-footer-item"></div>
+                             <div class="skeleton skeleton-footer-item"></div>
+                         </div>
+                     </div>
+                </div>
+            </article>
+        </div>
+    </ng-template>
+
+    <div *ngIf="!isLoading && !mainNews && !errorMsg">
+        <p class="status-message">No news articles found.</p>
+    </div>
+</div>
+

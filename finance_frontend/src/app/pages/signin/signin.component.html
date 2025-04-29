@@ -1,0 +1,92 @@
+<div class="signin-page-container">
+    <div class="back-link-container">
+        <a (click)="navigate_Main()" class="back-link">← Back to Home</a>
+    </div>
+
+    <div class="form-wrapper">
+      <div class="logo-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      </div>
+  
+      <h1>Sign In</h1>
+      <p class="subtitle">Welcome back! Please enter your details.</p>
+  
+      <div *ngIf="signInError" class="alert alert-danger top-alert animate-slide-down">
+        {{ signInError }}
+      </div>
+
+      <div *ngIf="googleSignInError" class="alert alert-danger top-alert animate-slide-down">
+        {{ googleSignInError }}
+      </div>
+
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="text"
+            placeholder="you@example.com"
+            formControlName="email"
+            (blur)="checkIsGoogleAccount()"
+            [class.is-invalid]="formControls['email'].touched && formControls['email'].invalid"
+            [attr.aria-invalid]="formControls['email'].touched && formControls['email'].invalid"
+            autocomplete="email">
+  
+          <div *ngIf="formControls['email'].touched && formControls['email'].invalid" class="invalid-feedback animate-slide-down">
+            <div *ngIf="formControls['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="formControls['email'].errors?.['email']">Please enter a valid email</div>
+          </div>
+  
+          <div *ngIf="emailLinkedToGoogle" class="alert alert-warning animate-slide-down">
+            This email is already linked to a Google account. Please, <a>login via Google</a>.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            [class.is-invalid]="formControls['password'].touched && formControls['password'].invalid"
+            [attr.aria-invalid]="formControls['password'].touched && formControls['password'].invalid"
+            autocomplete="current-password">
+  
+           <div *ngIf="formControls['password'].touched && formControls['password'].invalid" class="invalid-feedback animate-slide-down">
+            <div *ngIf="formControls['password'].errors?.['required']">Password is required</div>
+            </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-check">
+            <input id="stay" type="checkbox" formControlName="stay">
+            <label for="stay">Stay Signed in</label>
+          </div>
+          <a class="form-link" role="button">Forgot password?</a>
+        </div>
+  
+  
+        <button type="submit" class="btn btn-primary" [disabled]="signInForm.invalid || emailLinkedToGoogle">
+            Sign In
+        </button>
+  
+        <div class="form-footer">
+          <p>New in ScriptCash? <span class="form-link" (click)="navigate_SignUp()" role="button">Create New Account</span></p>
+        </div>
+  
+        <div class="divider">
+            <span>or</span>
+        </div>
+  
+        <div class="social-login">
+            <div id="google-btn"></div>
+        </div>
+      </form>
+    </div>
+
+    <div class="legal-links">
+        <a routerLink="/terms" target="_blank" class="legal-link">Terms of Use</a>
+        <span class="separator">&bull;</span> <a routerLink="/privacy" target="_blank" class="legal-link">Privacy Policy</a>
+    </div>
+</div>

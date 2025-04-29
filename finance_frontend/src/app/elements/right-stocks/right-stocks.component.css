@@ -1,0 +1,146 @@
+/* -------- Stock -------- */
+
+
+.main-content-area {
+    color: #e0e0e0;
+    padding: 0 20px;
+    position: sticky;
+    top: 110px;
+    left: 0;
+    z-index: 999;
+    display: block;
+}
+
+.stock-lists-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+    max-width: 400px; 
+}
+  
+.stock-list-card {
+    background-color: #1e1e1e; 
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 15px 20px;
+}
+  
+.stock-list-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+  
+
+.stock-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stock-chart-container {
+    width: 50px;  /* Или другая ширина */
+    height: 35px; /* Или другая высота */
+    display: flex; /* Для центрирования, если нужно */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Стиль для случая, когда нет данных для графика */
+  .no-chart-data {
+      display: inline-block;
+      width: 100%;
+      height: 1px;
+      background-color: #444;
+  }
+  
+  /* Обновляем grid-template-columns для .stock-item, чтобы выделить место под график */
+  .stock-item {
+    display: grid;
+    /* Колонки: Инфо | График (50px) | Значения (авто) */
+    grid-template-columns: 1fr 50px auto;
+    gap: 10px; /* Отступы между колонками */
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+    min-height: 40px;
+  }
+  .stock-item:last-child { border-bottom: none; }
+  
+
+/* ---------------------- */
+  
+.stock-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    overflow: hidden;
+    font-size: 13px;
+}
+
+.stock-ticker {
+    font-weight: bold;
+}
+
+.stock-name {
+    font-size: 11px;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stock-chart {
+    width: 40px; 
+    height: 15px; 
+    position: relative; 
+    overflow: hidden;
+}
+
+.stock-chart::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 80%; 
+      background: linear-gradient(to top, transparent 10%, currentColor 10%, currentColor 20%, transparent 20%);
+      opacity: 0.3;
+}
+
+.stock-chart.positive-chart { color: #4caf50; }
+.stock-chart.negative-chart { color: #f44336; }
+
+.stock-values {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    line-height: 1.3;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.stock-price {
+    font-weight: 400;
+}
+
+.stock-change {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.stock-change.positive { color: #4caf50; }
+.stock-change.negative { color: #f44336; }
+
+.status-message {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+}
+
+.status-message.error {
+    color: red;
+}
+

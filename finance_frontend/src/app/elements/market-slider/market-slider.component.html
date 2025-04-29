@@ -1,0 +1,113 @@
+<div class="investments-wrapper">
+    <div class="investment-container">
+        <div class="title-navigation-wrapper">
+            <div class="investment-title">
+               <h1>{{ sliderTitle }}</h1>
+            </div>
+            <div class="custom-swiper-navigation">
+                <button type="button" class="custom-prev-btn" aria-label="Previous slide"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                  </svg>
+                </button>
+                <button type="button" class="custom-next-btn" aria-label="Next slide"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                  </svg>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="status-message">Loading data...</div>
+        <div *ngIf="loadingError" class="status-message error">Error: {{ loadingError }}</div>
+        
+        <div class="investment-slider-container" *ngIf="!isLoading && !loadingError">
+          <swiper-container #swiperContainer
+            class="my-investment-swiper"
+            slides-per-view="auto"
+            space-between="20"
+            pagination="false"
+            [breakpoints]="swiperBreakpoints"
+            init="false"
+            [navigation]="{ nextEl: '.custom-next-btn', prevEl: '.custom-prev-btn' }"
+          >
+            <swiper-slide *ngFor="let category of slideCategories">
+              <div class="investment-card">
+                <h3>{{ category.title }}</h3>
+                <p>{{ category.description }}</p>
+    
+                <ul class="items-list" [ngSwitch]="category.type">
+    
+                  <ng-container *ngSwitchCase="'gainers'">
+                    <li *ngFor="let crypto of topGainers">
+                      <div class="item-company">
+                        <div class="company-img">
+                          <img [src]="crypto.image" [alt]="crypto.name" width="18" style="vertical-align: middle; margin-right: 5px;">
+                         </div>
+                         <div class="company-desc">
+                          <span class="company-ticker">{{ crypto.symbol | uppercase }}</span>
+                          <span class="company-note">{{ crypto.name }}</span>
+                         </div>
+                      </div>
+                      <div class="item-price">{{ crypto.current_price | currency:'USD':'symbol':'1.2-6' }}</div>
+                      <div class="item-change" [ngClass]="getChangeClass(crypto.price_change_percentage_24h)">
+                        {{ crypto.price_change_percentage_24h | number:'1.2-2' }}%
+                      </div>
+                    </li>
+                  </ng-container>
+    
+                  <ng-container *ngSwitchCase="'losers'">
+                    <li *ngFor="let crypto of topLosers">
+                       <div class="item-company">
+                        <div class="company-img">
+                          <img [src]="crypto.image" [alt]="crypto.name" width="18" style="vertical-align: middle; margin-right: 5px;">
+                         </div>
+                         <div class="company-desc">
+                          <span class="company-ticker">{{ crypto.symbol | uppercase }}</span>
+                          <span class="company-note">{{ crypto.name }}</span>
+                         </div>
+                       </div>
+                       <div class="item-price">{{ crypto.current_price | currency:'USD':'symbol':'1.2-6' }}</div>
+                       <div class="item-change" [ngClass]="getChangeClass(crypto.price_change_percentage_24h)">
+                         {{ crypto.price_change_percentage_24h | number:'1.2-2' }}%
+                       </div>
+                    </li>
+                  </ng-container>
+    
+                  <ng-container *ngSwitchCase="'volume'">
+                    <li *ngFor="let crypto of topVolume">
+                       <div class="item-company">
+                          <div class="company-img">
+                            <img [src]="crypto.image" [alt]="crypto.name" width="18" style="vertical-align: middle; margin-right: 5px;">
+                          </div>
+                          <div class="company-desc">
+                            <span class="company-ticker">{{ crypto.symbol | uppercase }}</span>
+                            <span class="company-note">{{ crypto.name }}</span>
+                          </div>
+                       </div>
+                       <div class="item-change" title="Volume 24h: {{ crypto.total_volume | currency:'USD':'symbol':'1.0-0' }}"> {{ crypto.total_volume | currency:'USD':'symbol':'1.0-0' }}
+                       </div>
+                    </li>
+                  </ng-container>
+    
+                  <ng-container *ngSwitchCase="'market_cap'">
+                    <li *ngFor="let crypto of topMarketCap">
+                       <div class="item-company">
+                         <div class="company-img">
+                          <img [src]="crypto.image" [alt]="crypto.name" width="18" style="vertical-align: middle; margin-right: 5px;">
+                         </div>
+                         <div class="company-desc">
+                          <span class="company-ticker">{{ crypto.symbol | uppercase }}</span>
+                          <span class="company-note">{{ crypto.name }}</span>
+                         </div>
+                       </div>
+                       <div class="item-price">{{ crypto.current_price | currency:'USD':'symbol':'1.2-6' }}</div>
+                       <div class="item-change" title="Market Cap: {{ crypto.market_cap | currency:'USD':'symbol':'1.0-0' }}"> #{{ crypto.market_cap_rank }}
+                       </div>
+                    </li>
+                  </ng-container>
+    
+                  </ul>
+                </div>
+            </swiper-slide>
+          </swiper-container>
+        </div>                    
+    </div>
+</div>

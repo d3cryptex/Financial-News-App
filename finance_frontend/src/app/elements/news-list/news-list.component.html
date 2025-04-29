@@ -1,0 +1,40 @@
+<div class="news-list-container">
+    <h1>Other News</h1>
+  
+    <div *ngIf="errorMsg && allArticles.length === 0" class="error-message error">
+      {{ errorMsg }}
+    </div>
+
+    <div *ngIf="isLoading" class="loading-container">
+        <span class="loader"></span>
+    </div>
+
+    <div class="articles-list" *ngIf="allArticles.length > 0 || isLoading">
+        <div class="news-card" *ngFor="let article of allArticles; trackBy: trackByUrl"> <a [href]="article.url" target="_blank" rel="noopener noreferrer" class="card-link">
+            <div class="small-article-image-container" [class.placeholder-active]="!article.urlToImage">
+               <img class="small-article-image"
+                    [src]="article.urlToImage || ''"
+                    [alt]="article.title || 'News image'"
+                    (error)="handleImageError($event)">
+            </div>
+            <div class="news-content">
+              <h3 class="news-title">{{ article.title }}</h3>
+              <h3 class="news-description">{{ article.description }}</h3>
+              <div class="news-footer">
+                <span class="news-source">{{ getSourceName(article.source) }}</span>
+                <span class="news-date">{{ article.publishedAt | date:'mediumDate' }}</span> </div>
+            </div>
+          </a>
+        </div>
+    </div>
+
+    <div *ngIf="isLoadingMore" class="loading-container">
+        <span class="loader"></span>
+    </div>
+
+    <div #loadMoreTrigger *ngIf="!isLoading && !isLoadingMore && !isEndOfResults" style="height: 10px;"></div>
+
+    <div *ngIf="!isLoading && allArticles.length === 0 && !errorMsg">
+      <p class="status-message">No news articles found.</p>
+    </div>
+</div>

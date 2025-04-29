@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --background-color: #202020;
+    --container-color: #2E2E2E;
+    --section-color: #1d1d1d;
+    --main-color: #FF8838;
+    --main-color-muted: #FF8838;
+    --main-color-lighter: #ffb570bd;
+    --main-color-shadow: rgba(255, 136, 56, 0.5);
+    --dropdown-hover-bg: rgba(255, 255, 255, 0.05);
+    --dropdown-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    --bg-dark: #141414;
+    --card-bg: #1e1e1e;
+    --border-radius: 6px;
+    --border-color: #333;
+    --border-color-light: #2a2a2a; 
+    --border-color-medium: #444;  
+    --positive-color: #4caf50;    
+    --negative-color: #f44336;    
+    --loader-color: var(--main-color);
+    --text-color: #e0e0e0;
+    --text-muted: #aaa;
+    --text-muted-darker: #888;
+    --input-focus-border-color: var(--main-color);
+    --input-bg-color: #fff;
+    --button-text-color: #fff;
+    --error-color: #ef4444;
+    --error-bg-color: #200b0b;
+    --warning-color: #d97706;
+    --warning-bg-color: #352004;
+    --success-color: #0e5e43;
+    --success-bg-color: rgba(36, 247, 138, 0.1);
+    --link-color: var(--main-color-muted);
+    --link-hover-color: var(--main-color);
+    --container-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --scrollbar-bg: #202020;
+    --scrollbar-thumb-bg: #555;
+    --scrollbar-thumb-hover-bg: #777;
+    --scrollbar-width: 12px;
+    --scrollbar-border-radius: 6px;
+    --skeleton-base-color: #3a3a3a;
+    --skeleton-shine-color: rgba(255, 255, 255, 0.08);
+    --card-hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    --placeholder-image-bg: #2a2a2a;
+    --layout-gap: 15px; 
+    --container-padding: 15px;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    font-family: "Unbounded", sans-serif;
+}
+
+body {
+    font-family: "Unbounded", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: var(--scrollbar-width);  
+    height: var(--scrollbar-width); 
+}
+  
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+    border-radius: var(--scrollbar-border-radius);
+    margin: 2px; 
+}
+  
+ 
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-bg);
+    border-radius: var(--scrollbar-border-radius);
+    border: 2px solid var(--scrollbar-bg);
+    transition: background-color 0.2s ease-in-out; 
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover-bg);
+}
+  
+::-webkit-scrollbar-corner {
+    background: transparent;
+ }
+  
+ .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px; 
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+ }
+ 
+ .loader {
+    animation: rotate 1s infinite;
+    height: 30px;
+    width: 30px;
+}
+
+.loader:before,
+.loader:after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 12px;
+    width: 12px;
+}
+
+.loader:before {
+    animation: ball1 1s infinite;
+    background-color: var(--container-color);
+    box-shadow: 18px 0 0 var(--container-color);
+    margin-bottom: 6px;
+}
+
+.loader:after {
+    animation: ball2 1s infinite;
+    background-color: var(--container-color);
+    box-shadow: 18px 0 0 var(--container-color);
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg) scale(0.8) }
+    50% { transform: rotate(360deg) scale(1.2) }
+    100% { transform: rotate(720deg) scale(0.8) }
+}
+
+@keyframes ball1 {
+    0% {
+      box-shadow: 18px 0 0 var(--container-color);
+    }
+    50% {
+      box-shadow: 0 0 0 var(--container-color);
+      margin-bottom: 0;
+      transform: translate(9px, 9px);
+    }
+    100% {
+      box-shadow: 18px 0 0 var(--container-color);
+      margin-bottom: 6px;
+    }
+}
+
+@keyframes ball2 {
+    0% {
+      box-shadow: 18px 0 0 var(--container-color);
+    }
+    50% {
+      box-shadow: 0 0 0 var(--container-color);
+      margin-top: -12px;
+      transform: translate(9px, 9px);
+    }
+    100% {
+      box-shadow: 18px 0 0 var(--container-color);
+      margin-top: 0;
+    }
+}

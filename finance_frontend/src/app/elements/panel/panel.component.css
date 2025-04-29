@@ -1,0 +1,145 @@
+.panel-container {
+    width: 100%;
+    margin: 15px 0;
+    /* Добавляем боковые отступы здесь, чтобы контролировать расстояние от краев экрана */
+    padding: 0 20px; /* Стандартные боковые отступы */
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered-panel {
+    height: 40px;
+    width: 100%; /* Занимает всю доступную ширину внутри panel-container */
+    max-width: 1400px; /* Ограничиваем максимальную ширину, как в оригинале */
+    /* min-width: 1100px; */ /* Убираем или значительно уменьшаем min-width */
+    /* margin: 0 100px 0 100px; */ /* Убираем жесткие боковые margin */
+    margin: 0; /* Убираем margin */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */ /* Можно убрать, если внутри только .forex-rates */
+    justify-content: flex-start; /* Или так, чтобы тикер начинался слева */
+    background-color: var(--card-bg);
+    /* border-bottom: 1px solid var(--border-color, #333); */
+    cursor: pointer; /* Оставляем, если панель кликабельна */
+    overflow: hidden; /* Важно, чтобы содержимое тикера не вылезало за панель */
+}
+
+/* Стили для тикера остаются в основном без изменений */
+.forex-rates.ticker {
+    width: 100%; /* Тикер занимает всю ширину панели */
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0 10px; /* Небольшие внутренние отступы слева/справа для тикера */
+    box-sizing: border-box;
+    color: var(--text-color, #e0e0e0);
+    height: 100%; /* Занимает всю высоту панели */
+    display: flex; /* Используем flex для выравнивания по центру */
+    align-items: center; /* Вертикальное выравнивание контента тикера */
+}
+
+.ticker-wrap {
+    display: inline-block;
+    width: max-content; /* Ширина по содержимому */
+    animation: ticker-scroll 30s linear infinite;
+    will-change: transform;
+    /* Добавим вертикальное выравнивание, если нужно */
+     /* display: flex;
+     align-items: center; */
+}
+
+.forex-rates.ticker:hover .ticker-wrap {
+    animation-play-state: paused;
+}
+
+.rate-item {
+    display: inline-flex;
+    align-items: baseline;
+    margin-right: 40px; /* Интервал между элементами */
+    font-size: 14px;
+    vertical-align: middle; /* Для лучшего выравнивания в строке */
+}
+
+.currency-pair {
+    font-weight: 300;
+    color: var(--text-muted, #aaa);
+    margin-right: 8px;  /* Немного уменьшим отступ */
+    font-size: 0.9em;
+}
+
+.rate-value {
+    font-weight: 500;
+    color: var(--text-color, #e0e0e0);
+    letter-spacing: 0.3px;
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 1px 4px;
+    border-radius: 3px;
+    white-space: nowrap; /* Предотвращаем перенос внутри значения */
+}
+
+.rate-value.na { /* Стиль для N/A остается без изменений */
+    color: var(--text-muted, #777);
+    font-weight: 300;
+    background-color: transparent;
+    padding: 1px 0;
+}
+
+/* Сообщения об ошибках/статусе (без изменений) */
+.error-message, .status-message {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    width: 100%; /* Занимают всю ширину панели */
+}
+.error-message { color: red; }
+.status-message { color: var(--text-muted, #aaa); } /* Пример для статуса */
+
+/* Анимация (без изменений) */
+@keyframes ticker-scroll {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); } /* Прокрутка на половину ширины (т.к. контент дублируется) */
+}
+
+/* === Адаптация === */
+@media (max-width: 768px) {
+    .panel-container {
+        padding: 0 10px; /* Уменьшаем боковые отступы на планшетах/мобильных */
+    }
+
+     .rate-item {
+         margin-right: 30px; /* Можно немного уменьшить интервал */
+         font-size: 13px; /* Можно немного уменьшить шрифт */
+     }
+      .forex-rates.ticker {
+        padding: 0 5px; /* Уменьшаем внутренние отступы тикера */
+      }
+}
+
+@media (max-width: 480px) {
+    .panel-container {
+        padding: 0 5px; /* Минимальные боковые отступы */
+        margin: 10px 0; /* Уменьшаем вертикальный отступ */
+    }
+     .centered-panel {
+        height: 35px; /* Можно немного уменьшить высоту панели */
+        border-radius: 4px; /* Уменьшаем скругление */
+     }
+    .rate-item {
+        margin-right: 20px; /* Еще уменьшаем интервал */
+        font-size: 12px; /* Еще уменьшаем шрифт */
+    }
+    .currency-pair {
+        margin-right: 5px;
+    }
+    .forex-rates.ticker {
+      /* Можно уменьшить скорость анимации, если кажется слишком быстрой */
+      /* animation-duration: 40s; */
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,431 @@
+h1, p {
+    overflow-wrap: normal;
+    word-wrap: normal;
+}
+
+.top-big-article{
+    background-color: var(--card-bg, #1e1e1e);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 6px;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 12px; 
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.top-big-article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.big-article-layout{
+    display: flex;
+    flex-direction: column; 
+    height: 100%;
+}
+
+.big-article-description{
+    margin: 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    flex-grow: 1; 
+}
+
+.big-article-info h1{
+    font-size: 26px; 
+    font-weight: 600; 
+    margin: 0 0 8px 0; 
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-color);
+}
+
+.big-article-info p{
+    margin: 0 0 15px 0; 
+    font-weight: 300; 
+    font-size: 15px;
+    color: var(--text-muted, #aaa);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.big-article-date{
+    display: flex;
+    font-weight: 300; 
+    font-size: 12px;
+    color: var(--text-muted, #aaa);
+    margin-top: auto; 
+    padding-top: 10px; 
+}
+
+.big-article-date p { margin: 0; font-size: 12px; }
+.big-article-date span{ padding: 0 5px 0 5px; }
+
+.big-article-image-container{
+    width: 100%;
+    height: 300px; 
+    overflow: hidden; 
+    border-radius: 6px; 
+    margin-bottom: 15px; 
+    flex-shrink: 0;
+}
+
+.big-article-image{
+    display: block; 
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 6px;
+}
+
+.bottom-articles{
+    margin-top: 12px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 12px;
+}
+
+.article {
+    background-color: var(--card-bg, #1e1e1e);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex; 
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.small-article-layout, 
+.smaller-article-layout { 
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}
+
+.small-article-description{
+    margin: 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    flex-grow: 1; 
+    overflow: hidden; 
+}
+
+.small-article-info h1{
+    font-size: 16px; 
+    font-weight: 500;
+    margin: 0 0 5px 0; 
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-color);
+}
+
+.small-article-info p{
+    margin-top: 10px;
+    font-weight: 300; 
+    font-size: 15px;
+    color: var(--text-muted, #aaa);
+    overflow-wrap: break-word; 
+    word-wrap: break-word;
+}
+
+.small-article-date{
+    display: flex;
+    font-weight: 300;
+    font-size: 12px;
+    color: var(--text-muted, #aaa);
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.small-article-date p { margin: 0; font-size: 12px; }
+.small-article-date span { padding: 0 5px; }
+
+.small-article-image-container{
+    width: 100%;
+    aspect-ratio: 16 / 8; 
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 10px; 
+    flex-shrink: 0; 
+}
+
+.small-article-image{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder-cell {
+    background-color: transparent; 
+    border: none; 
+    min-height: 100px; 
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.big { grid-area: 1 / 1 / 3 / 4; }
+.small1 { grid-area: 1 / 4 / 2 / 5; }
+.small2 { grid-area: 2 / 4 / 3 / 5; }
+.medium1 { grid-area: 3 / 1 / 4 / 3; }
+.medium2 { grid-area: 3 / 3 / 4 / 5; }
+
+
+.skeleton {
+    background-color: #3a3a3a; /* Цвет заглушки (можно взять из переменных --border-color или чуть светлее) */
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    /* Можно добавить базовый фон ко всей карточке скелетона */
+    /* background-color: var(--card-bg, #1e1e1e); */
+  }
+  
+  /* Анимация мерцания */
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08), /* Цвет блика */
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  
+  /* Размеры для разных частей скелетона */
+  .skeleton-image {
+    width: 100%;
+    display: block; /* Чтобы margin-bottom работал */
+  }
+  /* Для большой карточки */
+  .big-article-layout .skeleton-image {
+    height: 300px; /* Как у реальной картинки */
+    margin-bottom: 15px;
+  }
+  /* Для маленьких карточек */
+  .small-article-layout .skeleton-image,
+  .smaller-article-layout .skeleton-image {
+     aspect-ratio: 16 / 8; /* Как у реальной картинки */
+     height: auto; /* Убираем фикс. высоту, если есть aspect-ratio */
+     margin-bottom: 10px;
+  }
+  
+  .skeleton-title {
+    height: 1.5em;  /* Примерная высота заголовка */
+    margin-bottom: 10px;
+    width: 75%; /* Не на всю ширину */
+  }
+  .big-article-info .skeleton-title { height: 1.8em; width: 60%; } /* Чуть выше для H1 */
+  .small-article-info .skeleton-title { height: 1.3em; width: 85%; }
+  
+  .skeleton-text {
+    height: 1em; /* Высота строки текста */
+    margin-bottom: 8px;
+    width: 100%;
+  }
+  .skeleton-text:last-of-type {
+    width: 70%; /* Последняя строка короче */
+    margin-bottom: 0;
+  }
+  
+  .skeleton-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px; /* Отступ сверху */
+    padding-top: 8px; /* Отступ внутри (если нужен) */
+  }
+  .skeleton-footer-item {
+    height: 0.9em; /* Высота текста футера */
+    width: 35%; /* Примерная ширина */
+    border-radius: 3px;
+  }
+  
+  
+  /* Анимация */
+  @keyframes shimmer {
+    0% { background-position: -100% 0; } /* Начинаем слева */
+    100% { background-position: 100% 0; } /* Заканчиваем справа */
+  }
+  
+  /* Стили для самой карточки скелетона */
+  /* Можно использовать существующие стили .article, добавив .skeleton-card */
+  .skeleton-card {
+    background-color: var(--card-bg, #1e1e1e);
+    border: 1px solid var(--border-color, #333);
+    border-radius: 6px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Контейнер для нижних скелетонов, повторяет .bottom-articles */
+  .skeleton-bottom-articles {
+     margin-top: 12px;
+     width: 100%;
+     display: grid;
+     grid-template-columns: repeat(4, 1fr); /* Та же сетка */
+     gap: 12px;
+  }
+  
+  /* Стили для позиционирования скелетонов в сетке */
+  .skeleton-card.big { grid-area: 1 / 1 / 3 / 4; }
+  .skeleton-card.small1 { grid-area: 1 / 4 / 2 / 5; }
+  .skeleton-card.small2 { grid-area: 2 / 4 / 3 / 5; }
+  .skeleton-card.medium1 { grid-area: 3 / 1 / 4 / 3; }
+  .skeleton-card.medium2 { grid-area: 3 / 3 / 4 / 5; }
+
+  @media (max-width: 991.98px) {
+  .bottom-articles,
+  .skeleton-bottom-articles {
+    /* Перестраиваем сетку в 2 колонки */
+    grid-template-columns: repeat(2, 1fr);
+    /* Сбрасываем явно заданные области сетки, чтобы элементы шли по порядку */
+    /* Это важно, если grid-area заданы вне медиа-запроса */
+    /* Если grid-area заданы внутри классов .big, .small1 и т.д., то ничего делать не нужно */
+    grid-template-areas: none; /* Попробуем сбросить именованные области */
+  }
+
+  /* Сбрасываем grid-area для всех дочерних article, чтобы они текли естественно */
+  .bottom-articles > .article,
+  .skeleton-bottom-articles > .skeleton-card {
+      grid-area: auto !important; /* Используем !important на случай высокой специфичности исходных правил */
+      /* Или просто удалите исходные правила grid-area, если они не нужны на десктопе */
+  }
+
+  /* Можно немного уменьшить отступы */
+  .top-big-article,
+  .article,
+  .skeleton-card {
+      padding: 12px;
+  }
+
+   .big-article-info h1 {
+      font-size: 22px; /* Чуть меньше */
+       -webkit-line-clamp: 2; /* Меньше строк */
+   }
+   .big-article-info p {
+       font-size: 14px;
+       -webkit-line-clamp: 3; /* Меньше строк */
+   }
+   .small-article-info h1 {
+       font-size: 15px;
+   }
+
+   /* Уменьшаем высоту большой картинки */
+   .big-article-image-container,
+   .big-article-layout .skeleton-image {
+       height: 250px;
+   }
+}
+
+
+/* --- Мобильные устройства (< 768px) --- */
+@media (max-width: 767.98px) {
+  .bottom-articles,
+  .skeleton-bottom-articles {
+    /* Остается одна колонка */
+    grid-template-columns: 1fr;
+    gap: 12px; /* Немного увеличим gap обратно */
+  }
+
+  .top-big-article,
+  .article,
+  .skeleton-card {
+      padding: 12px; /* Чуть больше паддинг */
+      margin-bottom: 12px;
+  }
+   .bottom-articles {
+        margin-top: 12px;
+   }
+
+   /* --- УМЕНЬШАЕМ КАРТИНКИ (делаем их шире/ниже) --- */
+   .big-article-image-container,
+   .big-article-layout .skeleton-image {
+       height: auto;
+       /* Соотношение 2:1 (шире, чем 16:9) */
+       aspect-ratio: 2 / 1;
+       margin-bottom: 12px; /* Немного увеличим отступ */
+   }
+   .small-article-image-container,
+   .small-article-layout .skeleton-image,
+   .smaller-article-layout .skeleton-image {
+        /* Тоже делаем шире/ниже */
+        aspect-ratio: 2 / 1;
+        margin-bottom: 10px;
+   }
+   /* --- КОНЕЦ УМЕНЬШЕНИЯ КАРТИНОК --- */
+
+
+    /* --- УВЕЛИЧИВАЕМ ТЕКСТ --- */
+    .big-article-info h1 {
+      font-size: 20px; /* Крупнее */
+      -webkit-line-clamp: 3;
+      line-height: 1.4; /* Слегка увеличим межстрочный интервал */
+   }
+   .big-article-info p {
+       font-size: 14px; /* Крупнее */
+       -webkit-line-clamp: 4; /* Больше строк описания */
+       line-height: 1.5;
+       margin-bottom: 12px;
+   }
+    .small-article-info h1 {
+       font-size: 15px; /* Крупнее */
+       -webkit-line-clamp: 3; /* Больше строк заголовка */
+       line-height: 1.4;
+       margin-bottom: 8px;
+   }
+   /* Показываем описание в маленьких карточках, но ограничиваем 2 строками */
+   .small-article-info p {
+        display: -webkit-box; /* Возвращаем отображение */
+       -webkit-line-clamp: 2; /* Ограничиваем 2 строками */
+       -webkit-box-orient: vertical;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       font-size: 13px; /* Немного увеличим */
+       line-height: 1.5;
+       color: var(--text-muted, #aaa);
+       margin-top: 8px; /* Добавим отступ */
+   }
+
+   .big-article-date,
+   .small-article-date {
+       font-size: 12px; /* Крупнее */
+       padding-top: 8px;
+   }
+    .big-article-date p,
+    .small-article-date p {
+        font-size: 12px; /* Крупнее */
+    }
+    /* --- КОНЕЦ УВЕЛИЧЕНИЯ ТЕКСТА --- */
+
+}

@@ -1,0 +1,109 @@
+<header class="header-container" [class.mobile-menu-is-open]="isMobileMenuOpen"> 
+    <div class="header-layout">
+        <div class="centered-header">
+            <div class="header-left-side">
+                <div class="menu-logo">
+                    <img src="../assets/img/sc.png" alt="logo">
+                </div>
+                <div class="menu-nav">
+                    <nav>
+                        <ul>
+                            <li><a class="menu-nav-links" routerLink="/news" routerLinkActive="active-link" (click)="closeMobileMenu()">News</a></li>
+                            <li><a class="menu-nav-links" routerLink="/market" routerLinkActive="active-link" (click)="closeMobileMenu()">Market</a></li>
+                            <li><a class="menu-nav-links" routerLink="/utils" routerLinkActive="active-link" (click)="closeMobileMenu()">Utils</a></li>
+                            <li class="dropdown-menu" #mainMenuDropdown> <button type="button" class="dropdown-trigger" aria-label="Toggle menu" (click)="toggleMainMenu($event)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"><path d="M12,17.17a5,5,0,0,1-3.54-1.46L.29,7.54A1,1,0,0,1,1.71,6.12l8.17,8.17a3,3,0,0,0,4.24,0l8.17-8.17a1,1,0,1,1,1.42,1.42l-8.17,8.17A5,5,0,0,1,12,17.17Z"/></svg>
+                                </button>
+                                <div class="dropdown-content" [class.is-open]="isMainMenuOpen">
+                                    <ul class="dropdown-main-list">
+                                        <li>
+                                            <span class="category-title">News</span>
+                                            <ul class="submenu-list">
+                                                <li><a routerLink="/news/finance" (click)="closeAllMenus()">Finance</a></li>
+                                                <li><a routerLink="/news/politics" (click)="closeAllMenus()">Politics</a></li>
+                                                <li><a routerLink="/news/science" (click)="closeAllMenus()">Science</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span class="category-title">Market</span>
+                                            <ul class="submenu-list">
+                                                <li><a routerLink="/market/currencies" (click)="closeAllMenus()">Currencies</a></li>
+                                                <li><a routerLink="/market/crypto" (click)="closeAllMenus()">Crypto</a></li>
+                                                <li><a routerLink="/market/stocks" (click)="closeAllMenus()">Stocks</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span class="category-title">Utils</span>
+                                            <ul class="submenu-list">
+                                                <li><a routerLink="/utils/converter" (click)="closeAllMenus()">Converter</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="header-right-side">
+                <div class="menu-search">
+                    <input type="text" class="search-header" placeholder="Search for news"/>
+                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path d="M 20.5 6 C 12.509634 6 6 12.50964 6 20.5 C 6 28.49036 12.509634 35 20.5 35 C 23.956359 35 27.133709 33.779044 29.628906 31.75 L 39.439453 41.560547 A 1.50015 1.50015 0 1 0 41.560547 39.439453 L 31.75 29.628906 C 33.779044 27.133709 35 23.956357 35 20.5 C 35 12.50964 28.490366 6 20.5 6 z M 20.5 9 C 26.869047 9 32 14.130957 32 20.5 C 32 23.602612 30.776198 26.405717 28.791016 28.470703 A 1.50015 1.50015 0 0 0 28.470703 28.791016 C 26.405717 30.776199 23.602614 32 20.5 32 C 14.130953 32 9 26.869043 9 20.5 C 9 14.130957 14.130953 9 20.5 9 z"/></svg>
+                </div>
+                <div class="menu-notifications" #notificationsMenu> <svg (click)="toggleNotifications($event)" class="menu-notifications-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path d="M 23.277344 4.0175781 C 15.193866 4.3983176 9 11.343391 9 19.380859 L 9 26.648438 L 6.3496094 31.980469 A 1.50015 1.50015 0 0 0 6.3359375 32.009766 C 5.2696804 34.277268 6.9957076 37 9.5019531 37 L 18 37 C 18 40.295865 20.704135 43 24 43 C 27.295865 43 30 40.295865 30 37 L 38.496094 37 C 41.002339 37 42.730582 34.277829 41.664062 32.009766 A 1.50015 1.50015 0 0 0 41.650391 31.980469 L 39 26.648438 L 39 19 C 39 10.493798 31.863289 3.6133643 23.277344 4.0175781 z M 23.417969 7.0136719 C 30.338024 6.6878857 36 12.162202 36 19 L 36 27 A 1.50015 1.50015 0 0 0 36.15625 27.667969 L 38.949219 33.289062 C 39.128826 33.674017 38.921017 34 38.496094 34 L 9.5019531 34 C 9.077027 34 8.8709034 33.674574 9.0507812 33.289062 C 9.0507812 33.289062 9.0507812 33.287109 9.0507812 33.287109 L 11.84375 27.667969 A 1.50015 1.50015 0 0 0 12 27 L 12 19.380859 C 12 12.880328 16.979446 7.3169324 23.417969 7.0136719 z M 21 37 L 27 37 C 27 38.674135 25.674135 40 24 40 C 22.325865 40 21 38.674135 21 37 z"/></svg>
+                    <div class="notifications-dropdown" [class.is-open]="isNotificationsOpen">
+                        <p class="notifications-title">Notifications</p>
+                        <p class="notifications-today">Today</p>
+                        </div>
+                </div>
+                <div class="menu-login">
+                <div *ngIf="!user" class="login-container">
+                    <p (click)="navigate_SignIn()">Sign in</p>
+                </div>
+                <div *ngIf="user" class="avatar-container" (click)="navigate_Profile()" title="Профиль {{ user.name }}">
+                    <img [src]="user.avatar_url" [alt]="user.name ? user.name + ' Avatar' : 'User Avatar'" class="profile-avatar" (error)="onAvatarError($event)">
+                </div>
+                </div>
+
+                <button class="hamburger-btn" type="button" aria-label="Toggle mobile menu" (click)="toggleMobileMenu()">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-menu-panel" [class.is-open]="isMobileMenuOpen">
+        <div class="mobile-menu-header">
+            <span class="mobile-menu-title">Menu</span>
+            <button class="close-btn" type="button" aria-label="Close mobile menu" (click)="closeMobileMenu()">&times;</button>
+        </div>
+        <div class="mobile-menu-content">
+            <div class="menu-search mobile-search-in-panel"> <input type="text" class="search-header" placeholder="Search..."/> <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path d="M 20.5 6 C 12.509634 6 6 12.50964 6 20.5 C 6 28.49036 12.509634 35 20.5 35 C 23.956359 35 27.133709 33.779044 29.628906 31.75 L 39.439453 41.560547 A 1.50015 1.50015 0 1 0 41.560547 39.439453 L 31.75 29.628906 C 33.779044 27.133709 35 23.956357 35 20.5 C 35 12.50964 28.490366 6 20.5 6 z M 20.5 9 C 26.869047 9 32 14.130957 32 20.5 C 32 23.602612 30.776198 26.405717 28.791016 28.470703 A 1.50015 1.50015 0 0 0 28.470703 28.791016 C 26.405717 30.776199 23.602614 32 20.5 32 C 14.130953 32 9 26.869043 9 20.5 C 9 14.130957 14.130953 9 20.5 9 z"/></svg>
+            </div>
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a routerLink="/news" routerLinkActive="active-mobile-link" (click)="closeMobileMenu()">News</a></li>
+                    <li><a routerLink="/market" routerLinkActive="active-mobile-link" (click)="closeMobileMenu()">Market</a></li>
+                    <li><a routerLink="/utils" routerLinkActive="active-mobile-link" (click)="closeMobileMenu()">Utils</a></li>
+                    <li class="mobile-category-title">News Categories</li>
+                    <li><a routerLink="/news/finance" (click)="closeMobileMenu()">Finance</a></li>
+                    <li><a routerLink="/news/politics" (click)="closeMobileMenu()">Politics</a></li>
+                    <li><a routerLink="/news/science" (click)="closeMobileMenu()">Science</a></li>
+
+                    <li class="mobile-category-title">Market Categories</li>
+                    <li><a routerLink="/market/currencies" (click)="closeMobileMenu()">Currencies</a></li>
+                    <li><a routerLink="/market/crypto" (click)="closeMobileMenu()">Crypto</a></li>
+                    <li><a routerLink="/market/stocks" (click)="closeMobileMenu()">Stocks</a></li>
+
+                    <li class="mobile-category-title">Utils</li>
+                    <li><a routerLink="/utils/converter" (click)="closeMobileMenu()">Converter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="mobile-menu-overlay" [class.is-open]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+
+</header>

@@ -1,0 +1,25 @@
+<div class="page-container">
+    <app-header></app-header>
+    <app-panel></app-panel>
+    <main class="main-container">
+        <div class="main-layout">
+            <div class="left-side">
+                <app-news-cards></app-news-cards>
+                <app-market-slider
+                [sliderTitle]="'Cryptocurrencies'" [slideCategories]="slideCategories"
+                [topGainers]="topGainers"
+                [topLosers]="topLosers"
+                [topVolume]="topVolume"
+                [topMarketCap]="topMarketCap"
+                [isLoading]="isLoading"
+                [loadingError]="loadingError">
+                </app-market-slider>
+                <app-news-list></app-news-list>
+            </div>
+            <div class="right-side">
+              <app-right-stocks></app-right-stocks>
+            </div>
+        </div>
+    </main>
+    <app-footer></app-footer>
+</div>

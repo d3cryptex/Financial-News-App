@@ -1,0 +1,23 @@
+<div class="panel-container">
+    <div class="centered-panel">
+        <div class="forex-rates card ticker">
+            <div *ngIf="isLoading" class="loading-container">
+                <span class="loader"></span>
+            </div>
+            <div class="ticker-wrap" *ngIf="!loadingError && ratesData.length > 0">
+                <div class="rate-item" *ngFor="let item of ratesData">
+                  <span class="currency-pair">{{ item.code }}/{{ baseCurrency }}</span>
+                  <span class="rate-value" *ngIf="item.rate !== null">{{ item.rate | currency:item.code:'symbol':'1.2-4' }}</span>
+                  <span class="rate-value" *ngIf="item.rate === null">N/A</span>
+                </div>
+                <div class="rate-item" *ngFor="let item of ratesData" aria-hidden="true"> <span class="currency-pair">{{ item.code }}/{{ baseCurrency }}</span>
+                  <span class="rate-value" *ngIf="item.rate !== null">{{ item.rate | currency:item.code:'symbol':'1.2-4' }}</span>
+                  <span class="rate-value" *ngIf="item.rate === null">N/A</span>
+                </div>
+            </div>
+             <div *ngIf="!isLoading && ratesData.length === 0 && !loadingError">
+                <p>No exchange rate data available.</p>
+             </div>
+        </div>
+    </div>
+</div>
