@@ -45,7 +45,43 @@ cd ../backend
 npm install
 ```
 
-3. **Set up environment variables**
+3.** Database Setup **
+Since ``synchronize: true`` is enabled in the TypeORM configuration, the tables will be automatically created based on the entities defined in the code. You don't need to manually create the database structure — TypeORM will handle it for you.
+However, if you prefer to manually create the database or need to reset the schema, below is the structure of the required tables.
+
+
+🧍 User Table
+```sql
+CREATE TABLE User (
+  id VARCHAR(255) PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255),
+  isGoogleAccount BOOLEAN DEFAULT FALSE,
+  googleId VARCHAR(255),
+  avatar_url VARCHAR(255) NOT NULL DEFAULT '/assets/img/avatar.png',
+  bio TEXT,
+  createdAt TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6)
+);
+```
+
+📰 News Table
+```sql
+CREATE TABLE News (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  newsid VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  content TEXT,
+  url VARCHAR(255) NOT NULL,
+  urlToImage VARCHAR(255),
+  source JSON NOT NULL,
+  date DATE NOT NULL
+);
+```
+> 💡 Note: With synchronize: true set in the TypeORM configuration, these tables will be automatically created when you first run the backend. You do not need to create them manually.
+
+4. **Set up environment variables**
 ```env
 POLYGON_API_KEY=you need to put your polygon api key
 NEWS_API_KEY=you need to put your news api key
@@ -58,7 +94,7 @@ DB_PASSWORD=here your password
 DB_NAME=here name your db
 ```
 
-4. **Run the project**
+5. **Run the project**
 ```bash
 # Frontend
 cd frontend
