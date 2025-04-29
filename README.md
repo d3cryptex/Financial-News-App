@@ -31,7 +31,7 @@
 
 1. **Clone the project**
 ```bash
-git clone https://github.com/your-username/financial-news.git
+git clone https://github.com/d3cryptex/finance_market.git
 ```
 
 2. **Install dependencies**
